@@ -52,7 +52,7 @@ public class UsuarioDaoPostgrest implements UsuarioDao {
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(UPDATE_USUARIO_SQL);
 			preparedStatement.setString(1, usuario.getNombre());
-			preparedStatement.setInt(4, usuario.getId());
+			preparedStatement.setInt(2, usuario.getId());
 			conexion.execute();
 		} catch (SQLException e) {
 			

@@ -96,16 +96,16 @@ public class UsuarioServlet extends HttpServlet {
 		String nombre= request.getParameter("nombre");
 		
 		
-		Usuario usuario = new Usuario(nombre);
+		Usuario usuario = new Usuario(0, nombre);
 		
-		UsuarioDao.insert(usuario);
+		usuarioDao.insert(usuario);
 		response.sendRedirect("list");
 	}
 	
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException{
 		int id= Integer.parseInt(request.getParameter("id"));
-		Usuario usuarioActual= UsuarioDao.select(id);
+		Usuario usuarioActual= usuarioDao.select(id);
 		
 		request.setAttribute("usuario", usuarioActual);
 		
@@ -120,7 +120,7 @@ public class UsuarioServlet extends HttpServlet {
 		
 		Usuario usuario = new Usuario(id, nombre);
 		
-		UsuarioDao.update(usuario);
+		usuarioDao.update(usuario);
 		response.sendRedirect("list");
 	}
 	
@@ -128,14 +128,14 @@ public class UsuarioServlet extends HttpServlet {
 			throws ServletException, IOException, SQLException{
 		int id= Integer.parseInt(request.getParameter("id"));
 		
-		UsuarioDao.delete(id);
+		usuarioDao.delete(id);
 		response.sendRedirect("list");
 	
 	}
 	
 	private void listUsuarios(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException{
-		List<Usuario> listUsuarios = UsuarioDao.selectAll();
+		List<Usuario> listUsuarios = usuarioDao.selectAll();
 		request.setAttribute("listUsuarios", listUsuarios);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuariolist.jsp");
