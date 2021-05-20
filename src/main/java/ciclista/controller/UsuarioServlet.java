@@ -23,7 +23,7 @@ import ciclista.dao.UsuarioDaoPostgrest;
 public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private UsuarioDao UsuarioDao;
+	private UsuarioDao usuarioDao;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,7 +37,7 @@ public class UsuarioServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		this.UsuarioDao=new UsuarioDao();
+		this.usuarioDao = new UsuarioDaoPostgrest();
 	}
 
 	/**
@@ -117,8 +117,6 @@ public class UsuarioServlet extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		int id= Integer.parseInt(request.getParameter("id"));
 		String nombre= request.getParameter("nombre");
-		String email= request.getParameter("email");
-		String pais= request.getParameter("pais");
 		
 		Usuario usuario = new Usuario(id, nombre);
 		
